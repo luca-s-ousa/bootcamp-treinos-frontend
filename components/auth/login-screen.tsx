@@ -11,7 +11,7 @@ const loginBackgroundImageSrc = "/images/auth/login-background.png";
 const fitAiLogoImageSrc = "/images/auth/fit-ai-logo.svg";
 const googleLogoImageSrc = "/images/auth/google-logo.svg";
 
-const LoginScreen = () => {
+export const LoginScreen = () => {
   const router = useRouter();
   const { data: session, isPending } = authClient.useSession();
   const [isSigningIn, setIsSigningIn] = useState(false);
@@ -32,7 +32,7 @@ const LoginScreen = () => {
 
     const { error } = await authClient.signIn.social({
       provider: "google",
-      callbackURL: `${process.env.NEXT_PUBLIC_BASE_URL}/`,
+      callbackURL: "/",
       errorCallbackURL: "/auth",
     });
 
@@ -86,7 +86,12 @@ const LoginScreen = () => {
                   data-icon="inline-start"
                 />
               ) : (
-                <Image alt="" height={16} src={googleLogoImageSrc} width={16} />
+                <Image
+                  alt=""
+                  height={16}
+                  src={googleLogoImageSrc}
+                  width={16}
+                />
               )}
               Fazer login com Google
             </Button>
@@ -109,5 +114,3 @@ const LoginScreen = () => {
     </main>
   );
 };
-
-export default LoginScreen;

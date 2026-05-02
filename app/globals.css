@@ -45,7 +45,9 @@
   --radius-2xl: calc(var(--radius) + 8px);
   --radius-3xl: calc(var(--radius) + 12px);
   --radius-4xl: calc(var(--radius) + 16px);
-  --font-heading: var(--font-sans);
+  --font-heading: var(--font-display);
+  --color-auth-sheet: var(--auth-sheet);
+  --color-auth-background: var(--auth-background);
 }
 
 :root {
@@ -81,6 +83,8 @@
   --sidebar-ring: oklch(0.723 0.014 214.4);
   --background: oklch(1 0 0);
   --foreground: oklch(0.148 0.004 228.8);
+  --auth-sheet: #2b54ff;
+  --auth-background: #000000;
 }
 
 .dark {
