@@ -1,32 +1,32 @@
 # Repository Guidelines
 
 ## Project Structure & Module Organization
-This is a single-app Next.js 16 project using the App Router. Routes live in `app/`, shared UI in `components/`, reusable utilities in `lib/`, and static assets in `public/`. Authentication helpers are colocated in `app/_lib/`. Follow the existing split between feature components such as `components/home/` and base shadcn/ui primitives in `components/ui/`.
+This repository is a Next.js App Router application. Route entrypoints live in `app/`, including `app/layout.tsx`, `app/page.tsx`, and `app/auth/page.tsx`. Shared UI primitives live in `components/ui/`, feature-specific screens in `components/auth/`, reusable helpers in `lib/`, and API/auth utilities in `app/_lib/`. Static assets belong in `public/`, and task briefs live in `tasks/`.
 
-Repository rules are mandatory. Read `rules/api.md`, `rules/react.md`, `rules/typescript.md`, and `rules/general.md` before changing code.
+Implementation rules are mandatory: review `rules/general.md`, `rules/react.md`, `rules/typescript.md`, and `rules/api.md` before changing code.
 
 ## Build, Test, and Development Commands
-Use `pnpm` for all package management.
+Use `pnpm` for all local workflows:
 
-- `pnpm dev` starts the local Next.js app.
-- `pnpm build` creates the production build and catches integration errors.
-- `pnpm start` serves the production build locally.
-- `pnpm lint` runs ESLint with the Next.js core-web-vitals and TypeScript presets.
+- `pnpm dev`: start the Next.js dev server.
+- `pnpm build`: create a production build and catch type/integration issues.
+- `pnpm start`: run the production build locally.
+- `pnpm lint`: run ESLint with the Next.js and TypeScript presets.
 
-There is no dedicated test script yet, so contributors should at minimum run `pnpm lint` and `pnpm build` before opening a PR.
+There is no `test` script yet, so contributors should at minimum run `pnpm lint` and `pnpm build` before submitting changes.
 
 ## Coding Style & Naming Conventions
-Write all code in TypeScript. Keep files and folders in `kebab-case`, components in `PascalCase`, and variables/functions in clear `camelCase`. Match the current style: semicolons enabled, double quotes, and simple functional components.
+Write all code in TypeScript. Use `kebab-case` for files and folders, `PascalCase` for React components, and descriptive `camelCase` for variables and functions. Follow the existing style in the repo: semicolons, double quotes, and small functional components.
 
-Prefer Server Components and only add `"use client"` when needed. Reuse shadcn/ui primitives before creating new UI. Use theme tokens from `app/globals.css`; do not hard-code Tailwind colors. Do not place multiple components in one file.
+Prefer Server Components by default and add `"use client"` only when necessary. Reuse shadcn/ui components before creating new UI, and use theme tokens from `app/globals.css` instead of hard-coded Tailwind colors. Keep one component per file.
 
 ## Testing Guidelines
-Automated test tooling is not configured yet in `package.json`. When adding tests later, place them next to the feature or in a nearby `__tests__/` folder and use descriptive names such as `login-screen.test.tsx`. Until then, validate changes with linting, production builds, and focused manual checks for auth and routing flows.
+Automated tests are not configured in `package.json` yet. If you add tests, place them near the feature or in a local `__tests__/` directory, using names like `login-screen.test.tsx`. For now, validate auth, routing, and UI changes through `pnpm lint`, `pnpm build`, and targeted manual checks.
 
 ## Commit & Pull Request Guidelines
-Recent history uses concise Conventional Commit prefixes, for example `feat: scaffold base project structure...`. Continue with `feat:`, `fix:`, `refactor:`, or `docs:` followed by a short imperative summary.
+Recent commits follow Conventional Commit prefixes such as `feat:` (`feat: integrate Orval for API client generation...`). Continue using `feat:`, `fix:`, `refactor:`, or `docs:` with a short imperative summary.
 
-PRs should include a clear description, linked issue or task when applicable, screenshots for UI updates, and the exact validation performed (`pnpm lint`, `pnpm build`). Keep scope narrow and call out any rule-driven decisions.
+PRs should include a concise description, linked task or issue when available, screenshots for UI changes, and the verification steps performed.
 
 ## Agent-Specific Notes
-Use Context7 to confirm current Next.js, React, shadcn/ui, and other stack APIs before implementing changes. For client-side data fetching, forms, auth, and theming, follow the repository rules exactly rather than generic framework defaults.
+Use Context7 to confirm current APIs and patterns for Next.js, React, BetterAuth, Orval, and shadcn/ui before implementing non-trivial changes.

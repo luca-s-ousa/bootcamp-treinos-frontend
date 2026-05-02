@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Inter, Inter_Tight } from "next/font/google";
+import { Anton, Geist_Mono, Inter, Inter_Tight } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
@@ -7,6 +7,12 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const interTight = Inter_Tight({
   subsets: ["latin"],
   variable: "--font-display",
+});
+
+const anton = Anton({
+  subsets: ["latin"],
+  variable: "--font-brand",
+  weight: "400",
 });
 
 const geistMono = Geist_Mono({
@@ -33,6 +39,7 @@ export default function RootLayout({
         "antialiased",
         inter.variable,
         interTight.variable,
+        anton.variable,
         geistMono.variable,
       )}
     >

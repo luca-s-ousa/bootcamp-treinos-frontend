@@ -9,6 +9,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
+  --font-brand: var(--font-brand);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -48,6 +49,13 @@
   --font-heading: var(--font-display);
   --color-auth-sheet: var(--auth-sheet);
   --color-auth-background: var(--auth-background);
+  --color-home-border: var(--home-border);
+  --color-home-muted-text: var(--home-muted-text);
+  --color-home-streak: var(--home-streak);
+  --color-home-streak-icon: var(--home-streak-icon);
+  --color-home-primary-muted: var(--home-primary-muted);
+  --color-home-toolbar-icon: var(--home-toolbar-icon);
+  --color-home-rest-bg: var(--home-rest-bg);
 }
 
 :root {
@@ -85,6 +93,13 @@
   --foreground: oklch(0.148 0.004 228.8);
   --auth-sheet: #2b54ff;
   --auth-background: #000000;
+  --home-border: #f1f1f1;
+  --home-muted-text: #656565;
+  --home-streak: #fef0e6;
+  --home-streak-icon: #f06100;
+  --home-primary-muted: #d5dffe;
+  --home-toolbar-icon: #9a9a9a;
+  --home-rest-bg: #f1f1f1;
 }
 
 .dark {
