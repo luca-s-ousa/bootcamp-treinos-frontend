@@ -1,7 +1,4 @@
-"use client";
-
 import { redirect } from "next/navigation";
-import { LoaderCircle } from "lucide-react";
 import { authClient } from "@/app/_lib/auth-client";
 import {
   Card,
@@ -10,21 +7,21 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { headers } from "next/headers";
+import { getHomeData } from "./_lib/api/fetch-generated";
+import dayjs from "dayjs";
 
-const HomeScreen = () => {
-  const { data: session, isPending } = authClient.useSession();
+export default async function HomeScreen() {
+  const session = await authClient.getSession({
+    fetchOptions: {
+      headers: await headers(),
+    },
+  });
 
-  if (isPending) return null;
+  if (!session.data?.user) return redirect("/auth");
 
-  if (!session) return redirect("/auth");
-
-  if (isPending || !session) {
-    return (
-      <main className="flex min-h-svh items-center justify-center bg-muted px-6">
-        <LoaderCircle className="size-8 animate-spin text-primary" />
-      </main>
-    );
-  }
+  const homeData = await getHomeData(dayjs().format("YYYY-MM-DD"));
+  console.log(homeData);
 
   return (
     <main className="flex min-h-svh items-center justify-center bg-muted px-6 py-10">
@@ -40,16 +37,14 @@ const HomeScreen = () => {
           <div className="space-y-2">
             <p className="text-sm text-muted-foreground">Usuário autenticado</p>
             <p className="text-base font-medium text-foreground">
-              {session.user.name || session.user.email}
+              {session.data?.user.name || session.data?.user.email}
             </p>
             <p className="text-sm text-muted-foreground">
-              {session.user.email}
+              {session.data?.user.email}
             </p>
           </div>
         </CardContent>
       </Card>
     </main>
   );
-};
-
-export default HomeScreen;
+}
